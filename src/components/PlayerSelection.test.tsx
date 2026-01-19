@@ -7,7 +7,7 @@ describe('PlayerSelection', () => {
   it('renders title and description', () => {
     render(<PlayerSelection onSelect={vi.fn()} />);
     
-    expect(screen.getByText('점심값 내기')).toBeInTheDocument();
+    expect(screen.getByText('달리기')).toBeInTheDocument();
     expect(screen.getByText('몇 명이서 게임할까요?')).toBeInTheDocument();
   });
 

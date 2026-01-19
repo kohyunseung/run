@@ -20,7 +20,7 @@ describe('ResultDialog', () => {
     expect(screen.getByText('꼴찌는...')).toBeInTheDocument();
     expect(screen.getByText('쥐')).toBeInTheDocument();
     expect(screen.getByText('🐭')).toBeInTheDocument();
-    expect(screen.getByText(/점심값은 쥐님이 내세요/)).toBeInTheDocument();
+    expect(screen.getByText(/쥐님이 꼴찌예요/)).toBeInTheDocument();
   });
 
   it('renders watch ad button', () => {

@@ -104,7 +104,7 @@ export function ResultDialog({ loser, emoji, onRestart }: ResultDialogProps) {
           <div className="text-7xl mb-4">{emoji}</div>
           <h3 className="text-2xl mb-2">꼴찌는...</h3>
           <p className="text-3xl text-blue-500 mb-1">{loser}</p>
-          <p className="text-gray-600">점심값은 {loser}님이 내세요! 🍚</p>
+          <p className="text-gray-600">{loser}님이 꼴찌예요! 🏃💨</p>
         </div>
 
         {errorMessage && (

@@ -9,8 +9,8 @@ export function PlayerSelection({ onSelect }: PlayerSelectionProps) {
     <div className="min-h-screen flex flex-col items-center justify-center px-5 pb-20">
       <div className="w-full max-w-md">
         <div className="text-center mb-12">
-          <h1 className="text-3xl mb-3">🍚</h1>
-          <h2 className="text-2xl mb-2">점심값 내기</h2>
+<h1 className="text-3xl mb-3">🏃</h1>
+        <h2 className="text-2xl mb-2">달리기</h2>
           <p className="text-gray-600">몇 명이서 게임할까요?</p>
         </div>
 
