@@ -26,13 +26,14 @@ interface RaceResult {
   animal: Animal;
   position: number;
   progress: number;
+  finishTime: number | null;
 }
 
 export function RaceGame({ animals, onRestart }: RaceGameProps) {
   const [raceStarted, setRaceStarted] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [results, setResults] = useState<RaceResult[]>(
-    animals.map(animal => ({ animal, position: 0, progress: 0 }))
+    animals.map(animal => ({ animal, position: 0, progress: 0, finishTime: null }))
   );
   const [finished, setFinished] = useState(false);
   const [loser, setLoser] = useState<Animal | null>(null);
@@ -51,37 +52,36 @@ export function RaceGame({ animals, onRestart }: RaceGameProps) {
   useEffect(() => {
     if (!raceStarted || finished) return;
 
+    let tick = 0;
     const interval = setInterval(() => {
+      tick++;
       setResults(prevResults => {
         const newResults = prevResults.map(result => {
           if (result.progress >= 100) return result;
           
-          // Random speed between 1.5 and 4
           const speed = Math.random() * 2.5 + 1.5;
           const newProgress = Math.min(result.progress + speed, 100);
+          const justFinished = result.progress < 100 && newProgress >= 100;
           
           return {
             ...result,
             progress: newProgress,
+            finishTime: justFinished ? tick : result.finishTime,
           };
         });
 
-        // Check if all finished
         const allFinished = newResults.every(r => r.progress >= 100);
         
         if (allFinished) {
-          // Assign positions
-          const sorted = [...newResults].sort((a, b) => {
-            // Animals that finished first (reached 100 earlier) should have lower positions
-            return b.progress - a.progress;
-          });
+          const sorted = [...newResults].sort((a, b) => 
+            (a.finishTime ?? Infinity) - (b.finishTime ?? Infinity)
+          );
           
           const withPositions = newResults.map(result => {
             const index = sorted.findIndex(s => s.animal === result.animal);
-            return { ...result, position: sorted.length - index };
+            return { ...result, position: index + 1 };
           });
 
-          // Find the loser (highest position number = last place)
           const lastPlace = withPositions.reduce((max, curr) => 
             curr.position > max.position ? curr : max
           );
