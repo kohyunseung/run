@@ -3,9 +3,9 @@
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
 
-  export default defineConfig({
+  export default defineConfig(({ command }) => ({
     plugins: [react()],
-    base: process.env.NODE_ENV === 'production' ? '/modoo-runner/' : '/',
+    base: command === 'build' ? '/run/' : '/',
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -58,4 +58,4 @@
       port: 3000,
       open: true,
     },
-  });
+  }));
