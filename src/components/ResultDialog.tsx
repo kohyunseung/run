@@ -115,20 +115,13 @@ export function ResultDialog({ loser, emoji, onRestart }: ResultDialogProps) {
 
         <div className="space-y-3">
           <button
-            onClick={onRestart}
-            className="w-full h-14 bg-blue-500 text-white rounded-xl text-lg active:bg-blue-600 transition-colors"
-          >
-            다시하기
-          </button>
-          
-          <button
             onClick={handleWatchAd}
             disabled={isAdButtonDisabled}
             className={`
               w-full h-14 rounded-xl text-lg transition-colors
               ${isAdButtonDisabled 
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                : 'bg-yellow-400 text-gray-900 active:bg-yellow-500'
+                : 'bg-blue-500 text-white active:bg-blue-600'
               }
             `}
           >

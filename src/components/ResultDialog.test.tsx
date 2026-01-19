@@ -23,27 +23,10 @@ describe('ResultDialog', () => {
     expect(screen.getByText(/점심값은 쥐님이 내세요/)).toBeInTheDocument();
   });
 
-  it('renders restart button', () => {
-    render(<ResultDialog {...defaultProps} />);
-    
-    expect(screen.getByText('다시하기')).toBeInTheDocument();
-  });
-
   it('renders watch ad button', () => {
     render(<ResultDialog {...defaultProps} />);
     
     expect(screen.getByText(/광고 보고 다시하기/)).toBeInTheDocument();
-  });
-
-  it('calls onRestart when restart button clicked', async () => {
-    const user = userEvent.setup();
-    const handleRestart = vi.fn();
-    
-    render(<ResultDialog {...defaultProps} onRestart={handleRestart} />);
-    
-    await user.click(screen.getByText('다시하기'));
-    
-    expect(handleRestart).toHaveBeenCalledTimes(1);
   });
 
   it('shows loading state when watching ad', async () => {
