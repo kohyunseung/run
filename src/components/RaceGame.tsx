@@ -59,7 +59,7 @@ export function RaceGame({ animals, onRestart }: RaceGameProps) {
         const newResults = prevResults.map(result => {
           if (result.progress >= 100) return result;
           
-          const speed = Math.random() * 2.5 + 1.5;
+          const speed = Math.random() * 1.2 + 0.8;
           const newProgress = Math.min(result.progress + speed, 100);
           const justFinished = result.progress < 100 && newProgress >= 100;
           
@@ -94,7 +94,7 @@ export function RaceGame({ animals, onRestart }: RaceGameProps) {
 
         return newResults;
       });
-    }, 50);
+    }, 80);
 
     return () => clearInterval(interval);
   }, [raceStarted, finished]);
